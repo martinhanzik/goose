@@ -3,7 +3,10 @@ name = "goose"
 version = "0.1.0"
 authors = ["Martin Hanzík <martin@hanzik.com>"]
 description = "Rust wrapper for duktape"
-
 license = "MIT"
 
 [dependencies]
+
+[dependencies.duktape-sys]
+path = "duktape-sys"
+version = "2.2.0"
