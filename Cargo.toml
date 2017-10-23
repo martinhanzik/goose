@@ -6,6 +6,7 @@ description = "Rust wrapper for duktape"
 license = "MIT"
 
 [dependencies]
+num = "0.1"
 
 [dependencies.duktape-sys]
 path = "duktape-sys"

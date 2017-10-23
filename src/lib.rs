@@ -1,25 +1,28 @@
-extern crate duktape_sys as ffi;
+pub mod ffi;
+pub mod context;
+pub mod value;
+
 
 #[cfg(test)]
 mod tests {
     use super::*;
     use std::ffi::{CStr, CString};
 
+    use context::Context;
+
     #[test]
-    fn sanity() {
-        let foo = CString::new("foo").unwrap();
+    fn concat() {
+        let context = Context::new();
         let result = CString::new("foo123true").unwrap();
+        let ctx = context.get_context();
+        let foo = "foo".to_owned();
+        context.push(&foo);
+        context.push(123);
+        context.push(true);
+        context.concat(3);
         unsafe {
-            let ctx = ffi::duk_create_heap_default();
-
-            ffi::duk_push_string(ctx, foo.as_ptr());
-            ffi::duk_push_int(ctx, 123);
-            ffi::duk_push_true(ctx);
-            ffi::duk_concat(ctx, 3);
             assert_eq!(CStr::from_ptr(ffi::duk_get_string(ctx, -1)).to_bytes(), result.to_bytes());
-            ffi::duk_pop(ctx);
-
-            ffi::duk_destroy_heap(ctx);
         }
+        context.pop();
     }
 }
