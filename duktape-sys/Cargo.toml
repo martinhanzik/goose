@@ -1,0 +1,14 @@
+[package]
+name = "duktape-sys"
+version = "2.2.0"
+authors = ["Martin Hanzík <martin@hanzik.com>"]
+description = "Native bindings to the duktape library"
+license = "MIT"
+build = "build.rs"
+
+[dependencies]
+
+
+[build-dependencies]
+bindgen = { version = "0.23", optional = true }
+gcc = "0.3"
