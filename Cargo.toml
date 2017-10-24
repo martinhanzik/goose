@@ -5,6 +5,9 @@ authors = ["Martin Hanzík <martin@hanzik.com>"]
 description = "Rust wrapper for duktape"
 license = "MIT"
 
+[workspace]
+members = ["duktape-sys"]
+
 [dependencies]
 num = "0.1"
 
